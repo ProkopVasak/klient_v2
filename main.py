@@ -3,7 +3,7 @@ pins.touch_set_mode(TouchTarget.P2, TouchTargetMode.CAPACITIVE)
 radio.set_group(69)
 radio.set_transmit_serial_number(True)
 radio.set_transmit_power(7)
-enabled = 1
+enabled = 0
 hlasy = ["None"]
 x = 0
 posilani = 0 

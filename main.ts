@@ -3,7 +3,7 @@ pins.touchSetMode(TouchTarget.P2, TouchTargetMode.Capacitive)
 radio.setGroup(69)
 radio.setTransmitSerialNumber(true)
 radio.setTransmitPower(7)
-let enabled = 1
+let enabled = 0
 let hlasy = ["None"]
 let x = 0
 let posilani = 0
