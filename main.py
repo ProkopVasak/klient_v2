@@ -10,7 +10,6 @@ posilani = 0
 def votes(): 
     global posilani, hlasy, x, enabled   
     while posilani == 1:
-        
         for i in range(1):
             basic.pause(5000)
             if hlasy[x] == "A":
@@ -28,7 +27,8 @@ def votes():
             print(hlasy[x]) 
             posilani = 0
             enabled = 0 
-            x = 0 
+            x = 0
+            basic.clear_screen() 
             print(hlasy[x])         
 forever(votes)
 
@@ -40,6 +40,13 @@ def on_button_pressed_a():
         else:
             posilani = 1  
         hlasy.append("A")
+        basic.show_leds("""
+        . . # . .
+        . # . # .
+        # . . . #
+        # # # # #
+        # . . . #
+        """)
         x += 1
         print(x)
     else:
@@ -53,6 +60,14 @@ def on_button_pressed_b():
         else:
             posilani = 1    
         hlasy.push("B")
+
+        basic.show_leds("""
+        . # # . .
+        . # . # .
+        . # # . .
+        . # . # .
+        . # # . .
+        """)
         x += 1
         print(x)
 
@@ -67,6 +82,14 @@ def on_pin_pressed_p1():
         else:
             posilani = 1    
         hlasy.push("C")
+
+        basic.show_leds("""
+        . # # . .
+        # . . # .
+        # . . . .
+        # . . # .
+        . # # . .
+        """)
         x += 1
         print(x)
     else:
@@ -80,6 +103,13 @@ def on_pin_pressed_p2():
         else:
             posilani = 1    
         hlasy.push("D")
+        basic.show_leds("""
+        . # # . .
+        . # . # .
+        . # . # .
+        . # . # .
+        . # # . .
+        """)
         x += 1
         print(x)
     else:
@@ -103,8 +133,9 @@ def on_received_value(name, value):
 radio.on_received_value(on_received_value)
 
 def on_received_number(receivedNumber):
-    basic.show_icon(IconNames.HEART)
-    basic.pause(3000)
-    basic.clear_screen()
+    if receivedNumber == control.device_serial_number():
+        basic.show_icon(IconNames.HEART)
+        basic.pause(3000)
+        basic.clear_screen()
 radio.on_received_number(on_received_number)
 print(control.device_serial_number())
