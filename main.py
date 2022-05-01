@@ -88,9 +88,7 @@ input.on_pin_pressed(TouchPin.P2, on_pin_pressed_p2)
 
 def on_received_value(name, value):
     global enabled
-    if name == "vote" and value == 1:
-
-        basic.show_icon(IconNames.HEART)
+    
     if name == "enabled" and value == 1:
         enabled = 1
         

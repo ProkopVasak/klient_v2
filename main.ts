@@ -104,10 +104,6 @@ input.onPinPressed(TouchPin.P2, function on_pin_pressed_p2() {
 })
 radio.onReceivedValue(function on_received_value(name: string, value: number) {
     
-    if (name == "vote" && value == 1) {
-        basic.showIcon(IconNames.Heart)
-    }
-    
     if (name == "enabled" && value == 1) {
         enabled = 1
     }
