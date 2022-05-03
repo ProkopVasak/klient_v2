@@ -1,6 +1,6 @@
 pins.touch_set_mode(TouchTarget.P1, TouchTargetMode.CAPACITIVE)
 pins.touch_set_mode(TouchTarget.P2, TouchTargetMode.CAPACITIVE)
-radio.set_group(69)
+radio.set_group(92)
 radio.set_transmit_serial_number(True)
 radio.set_transmit_power(7)
 enabled = 0
@@ -11,6 +11,7 @@ def votes():
     global posilani, hlasy, x, enabled   
     while posilani == 1:
         for i in range(1):
+            radio.send_value("ack", control.device_serial_number())
             basic.pause(5000)
             if hlasy[x] == "A":
                 radio.send_value("vote", 1)
@@ -128,14 +129,7 @@ def on_received_value(name, value):
     if name == "ack" and value == control.device_serial_number():
         print(value)
         basic.show_icon(IconNames.HEART)
-        basic.pause(300)
+        basic.pause(1000)
         basic.clear_screen()
 radio.on_received_value(on_received_value)
 
-def on_received_number(receivedNumber):
-    if receivedNumber == control.device_serial_number():
-        basic.show_icon(IconNames.HEART)
-        basic.pause(3000)
-        basic.clear_screen()
-radio.on_received_number(on_received_number)
-print(control.device_serial_number())

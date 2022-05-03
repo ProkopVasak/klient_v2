@@ -1,6 +1,6 @@
 pins.touchSetMode(TouchTarget.P1, TouchTargetMode.Capacitive)
 pins.touchSetMode(TouchTarget.P2, TouchTargetMode.Capacitive)
-radio.setGroup(69)
+radio.setGroup(92)
 radio.setTransmitSerialNumber(true)
 radio.setTransmitPower(7)
 let enabled = 0
@@ -11,6 +11,7 @@ forever(function votes() {
     
     while (posilani == 1) {
         for (let i = 0; i < 1; i++) {
+            radio.sendValue("ack", control.deviceSerialNumber())
             basic.pause(5000)
             if (hlasy[x] == "A") {
                 radio.sendValue("vote", 1)
@@ -144,17 +145,8 @@ radio.onReceivedValue(function on_received_value(name: string, value: number) {
     if (name == "ack" && value == control.deviceSerialNumber()) {
         console.log(value)
         basic.showIcon(IconNames.Heart)
-        basic.pause(300)
+        basic.pause(1000)
         basic.clearScreen()
     }
     
 })
-radio.onReceivedNumber(function on_received_number(receivedNumber: number) {
-    if (receivedNumber == control.deviceSerialNumber()) {
-        basic.showIcon(IconNames.Heart)
-        basic.pause(3000)
-        basic.clearScreen()
-    }
-    
-})
-console.log(control.deviceSerialNumber())
