@@ -33,6 +33,7 @@ forever(function votes() {
             x = 0
             basic.clearScreen()
             console.log(hlasy[x])
+            hlasy = ["None"]
         }
     }
 })
@@ -136,10 +137,12 @@ radio.onReceivedValue(function on_received_value(name: string, value: number) {
     
     if (name == "enabled" && value == 1) {
         enabled = 1
+        x = 0
     }
     
     if (name == "enabled" && value == 0) {
         enabled = 0
+        x = 0
     }
     
     if (name == "ack" && value == control.deviceSerialNumber()) {

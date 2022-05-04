@@ -30,7 +30,8 @@ def votes():
             enabled = 0 
             x = 0
             basic.clear_screen() 
-            print(hlasy[x])         
+            print(hlasy[x])
+            hlasy = ["None"]         
 forever(votes)
 
 def on_button_pressed_a():
@@ -118,13 +119,15 @@ def on_pin_pressed_p2():
 input.on_pin_pressed(TouchPin.P2, on_pin_pressed_p2)
 
 def on_received_value(name, value):
-    global enabled
+    global enabled, x
     
     if name == "enabled" and value == 1:
         enabled = 1
+        x = 0
         
     if name == "enabled" and value == 0:
         enabled = 0
+        x = 0
         
     if name == "ack" and value == control.device_serial_number():
         print(value)
